@@ -17,15 +17,16 @@ const random = (size: number) => Math.floor(Math.random() * size);
 const getColor = ():string => {
   const idx = random(SACK.length);
   const [picked] = SACK.splice(idx, 1);
-  console.log('Colors remaining:', SACK.length, idx);
   return picked;
 };
 
-const createCard = (): string[] =>  createArray(TOTAL_CARDS).map(getColor);
+const createCard = (): string[] => createArray(TOTAL_CARDS).map(getColor);
+
+const initialCards = createArray(TOTAL_COLORS).map(() => createCard());
 
 export default function Table()  {
   
-  const [cards, setCards] = useState<Array<string[]>>(createArray(TOTAL_COLORS).map(() => createCard()))
+  const [cards, setCards] = useState<Array<string[]>>(initialCards)
 
   const reload = (index: number) => {
     const copy = [...cards];
