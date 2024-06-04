@@ -3,15 +3,25 @@ import './styles.css'
 
 const TOTAL_CARDS = 4;
 const TOTAL_COLORS = 4;
-const COLORS = ['purple', 'green', 'blue', 'red', 'yellow', 'orange']
-
-const random = (size: number) => Math.floor(Math.random() * size);
+const COLORS = ['purple', 'green', 'blue', 'red', 'yellow', 'orange'];
 
 const createArray = (size: number) => [...Array(size).keys()]
 
-const getColor = () => COLORS[random(COLORS.length)];
+const SACK = COLORS.reduce<string[]>((acc, color) => {
+  const stack = createArray(10).map(() => color);
+  return [...acc, ...stack];
+}, []);
 
-const createCard = () =>  createArray(TOTAL_CARDS).map(() => getColor());
+const random = (size: number) => Math.floor(Math.random() * size);
+
+const getColor = ():string => {
+  const idx = random(SACK.length);
+  const [picked] = SACK.splice(idx, 1);
+  console.log('Colors remaining:', SACK.length, idx);
+  return picked;
+};
+
+const createCard = (): string[] =>  createArray(TOTAL_CARDS).map(getColor);
 
 export default function Table()  {
   
