@@ -3,7 +3,7 @@ import './styles.css'
 
 const TOTAL_CARDS = 4;
 const TOTAL_COLORS = 4;
-const COLORS = ['purple', 'green', 'blue', 'red', 'yellow', 'orange'];
+const COLORS = ['gray', 'green', 'blue', 'red', 'yellow', 'brown'];
 
 const createArray = (size: number) => [...Array(size).keys()]
 
